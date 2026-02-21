@@ -1,4 +1,4 @@
-"""exercises.ex01_tea_party"""
+"""exercises.ex02_chardle"""
 
 __author__ = "730873961"
 
@@ -65,8 +65,7 @@ def contains_char(word: str, letter: str) -> None:
 def main() -> None:
     contains_char(word=input_word(), letter=input_letter())
 
-
-"""entry point of the program, gathers valid input"""
+    """entry point of the program, gathers valid input"""
 
 
 if __name__ == "__main__":
