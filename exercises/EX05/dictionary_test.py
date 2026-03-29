@@ -34,7 +34,7 @@ def test_invert_edge_case() -> None:
 
 def test_favorite_color_use_case1() -> None:
     """Test favorite_color returns the most frequent color."""
-    assert favorite_color({"Max": "blue", "Sarah": "red", "Tina": "blue"}) == "blue"
+    assert favorite_color({"Max": "blue", "Shanks": "red", "Jason": "blue"}) == "blue"
 
 
 def test_favorite_color_use_case2() -> None:
