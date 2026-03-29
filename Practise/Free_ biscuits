@@ -1,0 +1,18 @@
+def free_b(input: dict[str, list[int]]) -> dict[str, bool]:
+    medium: dict[str, int] = {}
+
+    for key in input:
+        total: int = 0
+        for value in input[key]:
+            total += value
+            medium[key] = total
+
+    result: dict[str, bool] = {}
+
+    for key in medium:
+        if medium[key] >= 100:
+            result[key] = True
+        else:
+            result[key] = False
+
+    return result

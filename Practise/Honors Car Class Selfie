@@ -1,0 +1,23 @@
+class Car:
+    make: str
+    model: str
+    year: int
+    color: str
+    mileage: float
+
+    def __init__(self):
+        self.make = "Toyota"
+        self.model = "Camry"
+        self.year = 2026
+        self.color = "bule"
+        self.mileage = 25000
+
+
+def calculate_depreciation(car: Car, depreciation_rate: float) -> float:
+    car.mileage += 3000
+    return car.mileage * depreciation_rate
+
+
+my_car: Car = Car()
+result = calculate_depreciation(my_car, 0.05)
+print(result)
