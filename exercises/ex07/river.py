@@ -1,8 +1,8 @@
 """File to define River class."""
 
 from __future__ import annotations
-from ex07.fish import Fish
-from ex07.bear import Bear
+from .fish import Fish
+from .bear import Bear
 
 
 class River:
@@ -23,28 +23,45 @@ class River:
             self.bears.append(Bear())
 
     def check_ages(self):
-        return None
+        self.fish = [fish for fish in self.fish if fish.age <= 3]
+        self.bears = [bear for bear in self.bears if bear.age <= 5]
+
+    def remove_fish(self, amount: int) -> None:
+        self.fish = self.fish[amount:]
 
     def bears_eating(self):
-        return None
+        for bear in self.bears:
+            if len(self.fish) >= 5:
+                self.remove_fish(3)
+                bear.eat(3)
 
     def check_hunger(self):
-        return None
+        self.bears = [bear for bear in self.bears if bear.hunger_score >= 0]
 
     def repopulate_fish(self):
-        return None
+        for _ in range((len(self.fish) // 2) * 4):
+            self.fish.append(Fish())
 
     def repopulate_bears(self):
-        return None
+        for _ in range(len(self.bears) // 2):
+            self.bears.append(Bear())
 
     def __str__(self) -> str:
-        return ""
-    
+        return (
+            f"~~~ Day {self.day}: ~~~\n"
+            f"Fish population: {len(self.fish)}\n"
+            f"Bear population: {len(self.bears)}"
+        )
+
     def __add__(self, other_riv: River) -> River:
-        return self
-    
+        total_fish = len(self.fish) + len(other_riv.fish)
+        total_bears = len(self.bears) + len(other_riv.bears)
+        return River(total_fish, total_bears)
+
     def __mul__(self, factor: int) -> River:
-        return self
+        total_fish = len(self.fish) * factor
+        total_bears = len(self.bears) * factor
+        return River(total_fish, total_bears)
 
     def one_river_day(self):
         """Simulate one day of life in the river"""
@@ -68,3 +85,7 @@ class River:
         self.repopulate_bears()
         # Visualize River
         print(self)
+
+    def one_river_week(self):
+        for _ in range(7):
+            self.one_river_day()
