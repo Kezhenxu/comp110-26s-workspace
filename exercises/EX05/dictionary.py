@@ -1,4 +1,4 @@
-"""exercises.ex05_dictionary"""
+"""exercises.ex05_dictionary."""
 
 __author__ = "730873961"
 
@@ -74,7 +74,7 @@ def alphabetizer(words: list[str]) -> dict[str, list[str]]:
 
 def update_attendance(attendance: dict[str, list[str]], day: str, student: str) -> None:
     """Add a student's attendance to the given day in the dictionary."""
-    if day in attendance:
-        attendance[day].append(student)
-    else:
+    if day not in attendance:
         attendance[day] = [student]
+    elif student not in attendance[day]:
+        attendance[day].append(student)

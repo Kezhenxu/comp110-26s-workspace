@@ -3,7 +3,7 @@
 __author__ = "730873961"
 
 import pytest
-from exercises.EX05.dictionary import (
+from exercises.ex05.dictionary import (
     invert,
     favorite_color,
     count,
@@ -34,16 +34,16 @@ def test_invert_edge_case() -> None:
 
 def test_favorite_color_use_case1() -> None:
     """Test favorite_color returns the most frequent color."""
-    assert favorite_color({"Max": "blue", "Shanks": "red", "Jason": "blue"}) == "blue"
+    assert favorite_color({"Max": "blue", "Sarah": "red", "Tina": "blue"}) == "blue"
 
 
 def test_favorite_color_use_case2() -> None:
-    """Test favorite_color with only one entry."""
+    """Test favorite_color with one entry."""
     assert favorite_color({"Max": "green"}) == "green"
 
 
 def test_favorite_color_edge_case() -> None:
-    """Test favorite_color returns empty string for empty dictionary."""
+    """Test favorite_color returns an empty string for empty input."""
     assert favorite_color({}) == ""
 
 
@@ -56,7 +56,7 @@ def test_count_use_case1() -> None:
 
 
 def test_count_use_case2() -> None:
-    """Test count with all unique values."""
+    """Test count with unique values."""
     assert count(["red", "blue", "green"]) == {
         "red": 1,
         "blue": 1,
@@ -70,7 +70,7 @@ def test_count_edge_case() -> None:
 
 
 def test_alphabetizer_use_case1() -> None:
-    """Test alphabetizer groups words by first letter."""
+    """Test alphabetizer groups words by starting letter."""
     assert alphabetizer(["cat", "apple", "car", "banana"]) == {
         "c": ["cat", "car"],
         "a": ["apple"],
@@ -87,20 +87,20 @@ def test_alphabetizer_use_case2() -> None:
 
 
 def test_alphabetizer_edge_case() -> None:
-    """Test alphabetizer skips words that do not start with a letter."""
+    """Test alphabetizer skips words that do not begin with letters."""
     assert alphabetizer(["1dog", "!wow", "apple"]) == {"a": ["apple"]}
 
 
 def test_update_attendance_use_case1() -> None:
     """Test update_attendance adds a student to an existing day."""
-    attendance = {"Monday": ["Alice", "Bob"]}
+    attendance: dict[str, list[str]] = {"Monday": ["Alice", "Bob"]}
     update_attendance(attendance, "Monday", "Charlie")
     assert attendance == {"Monday": ["Alice", "Bob", "Charlie"]}
 
 
 def test_update_attendance_use_case2() -> None:
-    """Test update_attendance creates a new day when needed."""
-    attendance = {"Monday": ["Alice"]}
+    """Test update_attendance creates a new day if needed."""
+    attendance: dict[str, list[str]] = {"Monday": ["Alice"]}
     update_attendance(attendance, "Tuesday", "Bob")
     assert attendance == {
         "Monday": ["Alice"],
@@ -109,7 +109,7 @@ def test_update_attendance_use_case2() -> None:
 
 
 def test_update_attendance_edge_case() -> None:
-    """Test update_attendance allows duplicate student names."""
-    attendance = {"Monday": ["Alice", "Bob"]}
+    """Test update_attendance repeats the same name within a day."""
+    attendance: dict[str, list[str]] = {"Monday": ["Alice", "Bob"]}
     update_attendance(attendance, "Monday", "Alice")
     assert attendance == {"Monday": ["Alice", "Bob", "Alice"]}
